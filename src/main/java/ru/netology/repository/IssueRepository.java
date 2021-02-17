@@ -2,19 +2,17 @@ package ru.netology.repository;
 
 import ru.netology.domain.Issue;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class IssueRepository {
-    private Issue[] items = new Issue[0];
+    private Collection<Issue> items = new ArrayList<>();
 
     public void save(Issue item) {
-        int length = items.length + 1;
-        Issue[] tmp = new Issue[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
+        items.add(item);
     }
 
-    public Issue[] findAll() {
+    public Collection<Issue> findAll() {
         return items;
     }
 
@@ -28,16 +26,15 @@ public class IssueRepository {
     }
 
     public void removeById(int id) {
-        int length = items.length - 1;
-        Issue[] tmp = new Issue[length];
-        int index = 0;
-        for (Issue item : items) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
-            }
-        }
-        items = tmp;
+        items.removeIf(item -> item.getId() == id);
+    }
+
+    public void saveAll(Collection<Issue> issues) {
+        items.addAll(issues);
+    }
+
+    public void removeAll(Collection<Issue> issues) {
+        items.removeAll(issues);
     }
 
 
