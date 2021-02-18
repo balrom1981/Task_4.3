@@ -4,18 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Issue implements Comparable<Issue> {
+public class Issue {
     private int id;
     private boolean open;
-    private String author;
-    private String assignee;
-    private String label;
+    private Collection<String> author;
+    private Collection <String> assignee;
+    private Collection <String> label;
 
-    @Override
-    public int compareTo(Issue o) {
-        return 0;
-    }
+
+
 }
