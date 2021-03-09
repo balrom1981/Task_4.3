@@ -2,42 +2,31 @@ package ru.netology.manager;
 
 import ru.netology.domain.Issue;
 
-import ru.netology.domain.IssueAscPredicat;
 import ru.netology.repository.IssueRepository;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.function.Predicate;
+import java.util.List;
 
 public class SortManagerIssue {
-    private IssueRepository repository;
-    private IssueAscPredicat predicate = new IssueAscPredicat();
+    public static final short NEWEST_FIRST = 0;
+    public static final short OLDEST_FIRST = 1;
+
+    private final IssueRepository repository;
 
     public SortManagerIssue(IssueRepository repository) {
         this.repository = repository;
     }
 
-    public Issue[] searchBy(String author) {
-        Issue[] result = new Issue[0];
-        for (Issue issue : repository.findAll()) {
-            if (matches(issue, author)) {
-                Issue[] tmp = new Issue[result.length + 1];
-                // используйте System.arraycopy, чтобы скопировать всё из result в tmp
-                System.arraycopy(result, 0, tmp, 0, result.length);
-                tmp[tmp.length - 1] = issue;
-                result = tmp;
+    public List<Issue> sort(short orderBy) {
+        List<Issue> items = repository.findAll();
+        items.sort((Issue i1, Issue i2) -> {
+            if(i1.getId() == i2.getId()) return 0;
+            if (orderBy == OLDEST_FIRST) {
+                if (i1.getId() > i2.getId()) return 1;
+                else return -1;
             }
-        }
-        Arrays.sort(result);
-        return result;
+            if (i1.getId() < i2.getId()) return 1;
+            else return -1;
+        });
+        return items;
     }
-
-    public boolean matches(Issue issue, String author) {
-        if () {
-            return true;
-        }
-        return false;
-    }
-
-
 }

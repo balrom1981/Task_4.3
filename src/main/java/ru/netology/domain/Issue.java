@@ -3,8 +3,11 @@ package ru.netology.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -12,10 +15,9 @@ import java.util.Collection;
 public class Issue {
     private int id;
     private boolean open;
-    private Collection<String> author;
-    private Collection <String> assignee;
-    private Collection <String> label;
-
+    private String author;
+    private String assignee;
+    private Set<Label> label;
 
 
 }
