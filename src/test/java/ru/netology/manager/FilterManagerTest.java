@@ -39,6 +39,23 @@ class FilterManagerTest {
     }
 
     @Test
+    public void shouldFilterByStatus() {
+        FilterManager manager = new FilterManager(repository);
+        List<Issue> issues;
+
+        issues = manager.filterByStatus(true);
+        assertEquals(1, issues.get(0).getId());
+        assertEquals(3, issues.get(1).getId());
+        assertEquals(6, issues.get(2).getId());
+
+        issues = manager.filterByStatus(false);
+        assertEquals(2, issues.get(0).getId());
+        assertEquals(4, issues.get(1).getId());
+        assertEquals(5, issues.get(2).getId());
+
+    }
+
+    @Test
     public void shouldFilterByAuthor() {
         FilterManager manager = new FilterManager(repository);
         List<Issue> issues;
@@ -61,7 +78,6 @@ class FilterManagerTest {
     public void shouldFilterByLabel() {
         FilterManager manager = new FilterManager(repository);
         List<Issue> issues;
-
-
     }
+
 }

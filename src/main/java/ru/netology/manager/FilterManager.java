@@ -15,14 +15,27 @@ public class FilterManager {
         this.repository = repository;
     }
 
-    public List<Issue> filterByAuthor(String author){
+    public List<Issue> filterByStatus(boolean open) {
         return Issue;
-    };
-    public List<Issue> filterByAssignee(String assignee){
-        return Issue;
-    };
+    }
 
-    public List<Issue> filterByLabel(Set<Label> labels){
+    ;
+
+    public List<Issue> filterByAuthor(String author) {
         return Issue;
-    };
+    }
+
+    ;
+
+    public List<Issue> filterByAssignee(String assignee) {
+        return Issue;
+    }
+
+    ;
+
+    public List<Issue> filterByLabel(Set<Label> labels) {
+        return Issue;
+    }
+
+    ;
 }
