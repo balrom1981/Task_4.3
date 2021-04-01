@@ -6,6 +6,7 @@ import ru.netology.repository.IssueRepository;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FilterManager {
 
@@ -16,26 +17,29 @@ public class FilterManager {
     }
 
     public List<Issue> filterByStatus(boolean open) {
-        return Issue;
+        List<Issue> issues = repository.findAll();
+        return issues.stream()
+                .filter((Issue i)-> i.isOpen() == open)
+                .collect(Collectors.toList());
     }
 
     ;
 
     public List<Issue> filterByAuthor(String author) {
-        return Issue;
+        List<Issue> issues = repository.findAll();
+        return issues.stream()
+                .filter((Issue i)-> i.getAuthor() == author)
+                .collect(Collectors.toList());
     }
-
-    ;
 
     public List<Issue> filterByAssignee(String assignee) {
-        return Issue;
+        List<Issue> issues = repository.findAll();
+        return issues.stream()
+                .filter((Issue i)-> i.getAssignee() == assignee)
+                .collect(Collectors.toList());
     }
 
-    ;
-
-    public List<Issue> filterByLabel(Set<Label> labels) {
-        return Issue;
-    }
-
-    ;
+//    public List<Issue> filterByLabel(Set<Label> labels) {
+//        return Issue;
+//    }
 }

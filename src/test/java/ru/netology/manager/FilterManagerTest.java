@@ -62,7 +62,10 @@ class FilterManagerTest {
 
         issues = manager.filterByAuthor("Ivan");
         assertEquals(3, issues.get(0).getId());
-        assertEquals(6, issues.get(1).getId());
+        assertEquals(5, issues.get(1).getId());
+
+        issues = manager.filterByAuthor("Max");
+        assertEquals(4, issues.get(0).getId());
     }
 
     @Test
@@ -72,12 +75,16 @@ class FilterManagerTest {
 
         issues = manager.filterByAssignee("Elena");
         assertEquals(5, issues.get(0).getId());
+
+        issues = manager.filterByAssignee("Max");
+        assertEquals(2, issues.get(0).getId());
+        assertEquals(3, issues.get(1).getId());
     }
 
-    @Test
-    public void shouldFilterByLabel() {
-        FilterManager manager = new FilterManager(repository);
-        List<Issue> issues;
-    }
+//    @Test
+//    public void shouldFilterByLabel() {
+//        FilterManager manager = new FilterManager(repository);
+//        List<Issue> issues;
+//    }
 
 }
